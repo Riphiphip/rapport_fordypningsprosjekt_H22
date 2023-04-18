@@ -1,0 +1,14 @@
+\section{Method}
+This section primarily details the setup I used as a baseline for my exploration of MLIR. Actual development, choice of representations etc. will be detailed in \autoref{sec:results}.
+
+\subsection{Code baseline}
+As the basis for my work, I used the JLM evaluation suite \cite{reissmann_github_2022}. This is a software suite used for evaluating RVSDG as an IR for an optimizing compiler. I used this as a baseline since it i)~contains CIRCT, a high level synthesis dialect for MLIR \cite{noauthor_circt_nodate} which in turn bundles in LLVM and MLIR, and ii)~contains JLM, which has several tools for constructing and operating on RVSDG. For information on how to use MLIR, I primarily used the official MLIR documentation \cite{noauthor_mlir_nodate}. 
+
+\subsection{Development hardware}
+Development was primarily done on a university owned virtual machine running ubuntu 22.04. The VM was allocated 6 cores and 32 GB of memory.
+
+\subsection{Project structure}
+I decided to implement the RVSDG dialect as an in-tree dialect. This means that the source code of the dialect lives in the MLIR source tree and that it is built into MLIR itself. Doing it this way requires maintaining a custom fork of MLIR, unless you plan on doing an upstream merge. Pros, cons, and alternatives to this approach will be discussed in \autoref{sec:results:project-structure}.
+
+\subsection{Development approach}
+The main development pattern that was used during the project was to identify some basic aspect of RVSDG and then figure out how that could be implemented in MLIR. This approach was chosen since it allowed me to use RVSDG as the basis for my exploration, which seemed more achievable than learning all of MLIR first. Since the discovery of a usable development approach was a major part of the project, the MLIR and RVSDG specifics will be described and evaluated in \autoref{sec:results} and \autoref{sec:learnings} respectively.
